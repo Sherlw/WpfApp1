@@ -1,0 +1,43 @@
+﻿<Window x:Class="WpfApp1.NewOrderWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1"
+        mc:Ignorable="d"
+        Title="NewOrderWindow" Height="450" Width="800"
+        Background="{StaticResource BackgroundColor}">
+    <Grid>
+        <StackPanel Margin="10">
+            <Label Content="Клиент:" Style="{StaticResource LabelStyle}" />
+            <ComboBox ItemsSource="{Binding Clients}" SelectedItem="{Binding SelectedClient}" DisplayMemberPath="Name"  />
+
+            <Label Content="Устройство:" Style="{StaticResource LabelStyle}" />
+            <ComboBox ItemsSource="{Binding Devices}" SelectedItem="{Binding SelectedDevice}" DisplayMemberPath="Model" />
+
+            <Label Content="Дата заказа:" Style="{StaticResource LabelStyle}" />
+            <DatePicker SelectedDate="{Binding OrderDate}" />
+
+            <Label Content="Дата завершения:" Style="{StaticResource LabelStyle}" />
+            <DatePicker SelectedDate="{Binding CompletionDate}" />
+
+            <Label Content="Статус:" Style="{StaticResource LabelStyle}" />
+            <TextBox Text="{Binding Status, Mode=TwoWay}"/>
+
+            <Label Content="Описание:" Style="{StaticResource LabelStyle}" />
+            <TextBox Text="{Binding Description, Mode=TwoWay}" TextWrapping="Wrap"/>
+
+
+            <!-- Add Parts Section (This requires more complex binding and potentially a separate control) -->
+            <Label Content="Детали:" Style="{StaticResource LabelStyle}" />
+            <!-- Example -  You'll need a more sophisticated control for managing parts -->
+            <ListBox ItemsSource="{Binding OrderParts}" />
+
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
+                <Button Content="Сохранить" Command="{Binding SaveOrderCommand}" Margin="5,0"/>
+                <Button Content="Отмена" Command="{Binding CancelCommand}" Margin="5,0"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>
